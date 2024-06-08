@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 import { TodoContextProvider } from './context/TodoContext'
-import { stringify } from 'postcss'
 import { TodoForm } from './components'
 import TodoItem from './components/TodoItems'
 
@@ -17,7 +16,7 @@ function App() {
   }
 
   const updateTodo = (id, todo) => {
-    setTodos( (prev) => prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo)) )
+    setTodos((prev) => prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo)) )
   }
 
   const toggleComplete = (id) => {
