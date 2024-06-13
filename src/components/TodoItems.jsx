@@ -23,7 +23,7 @@ function TodoItem({ todo }) {
         >
             <input 
                 type="checkbox"
-                className="cursor-pointer flex items-start"
+                className="cursor-pointer flex mt-1 items-start"
                 checked={todo.completed}
                 onChange={toggleCompleted}
             />
