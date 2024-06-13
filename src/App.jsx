@@ -8,7 +8,10 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   const addTodo = (todo) => {
-    setTodos((prev) => [{ id: Date.now(), createdAt: new Date().toISOString(), ...todo }, ...prev]);
+    setTodos((prev) => [
+      { id: Date.now(), createdAt: new Date().toISOString(), ...todo },
+      ...prev
+    ]);
   };
 
   const deleteTodo = (id) => {
@@ -28,11 +31,11 @@ function App() {
   };
 
   useEffect(() => {
-    const todos = JSON.parse(localStorage.getItem('todos'));
-    if (todos && todos.length > 0) {
-      const parsedTodos = todos.map((todo) => ({
+    const storedTodos = JSON.parse(localStorage.getItem('todos'));
+    if (storedTodos && storedTodos.length > 0) {
+      const parsedTodos = storedTodos.map((todo) => ({
         ...todo,
-        createdAt: todo.createdAt ? new Date(todo.createdAt) : new Date(),
+        createdAt: new Date(todo.createdAt),
       }));
       setTodos(parsedTodos);
     }
@@ -41,7 +44,7 @@ function App() {
   useEffect(() => {
     const stringifiedTodos = todos.map((todo) => ({
       ...todo,
-      createdAt: todo.createdAt ? todo.createdAt.toISOString() : new Date().toISOString(),
+      createdAt: new Date(todo.createdAt).toISOString(),
     }));
     localStorage.setItem('todos', JSON.stringify(stringifiedTodos));
   }, [todos]);
@@ -51,7 +54,6 @@ function App() {
     const day = date.getDate();
     const month = date.toLocaleString('default', { month: 'long' });
 
-    // Add the correct ordinal suffix to the day
     const ordinalSuffix = (n) => {
       const s = ["th", "st", "nd", "rd"];
       const v = n % 100;
