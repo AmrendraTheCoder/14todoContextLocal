@@ -83,7 +83,7 @@ function App() {
           <div>
             {Object.keys(groupedTodos).map((date) => (
               <div key={date} className="mb-6">
-                <h2 className="text-xl font-semibold mb-4">{date}</h2>
+                <h2 className="text-l font-semibold mb-2">{date}</h2>
                 <div className="flex flex-wrap gap-y-3">
                   {groupedTodos[date].map((todo) => (
                     <div key={todo.id} className="w-full">
